@@ -1,12 +1,10 @@
 package com.example.demointerview.service;
 
-import com.example.demointerview.dto.BookDto;
+import com.example.demointerview.domain.BookDomain;
 
 public interface BookService {
 
-    BookDto saveBook(BookDto bookDto);
+    BookDomain createBook(BookDomain bookDomain);
 
-    BookDto getBook(Long id);
-
-    void deleteBook(Long id);
+    BookDomain getBook(Long id);
 }

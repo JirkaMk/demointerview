@@ -1,0 +1,26 @@
+### Create author
+POST http://localhost:8080/authors
+Content-Type: application/json
+
+{
+  "name": "Božena",
+  "surname": "Němcová",
+  "birthDate": "1933-10-08"
+}
+
+### Create book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "name": "Duna II",
+  "authorId": 1,
+  "year": 1968
+}
+
+### Get all authors
+GET http://localhost:8080/authors
+
+### Get book
+GET http://localhost:8080/books/1
+

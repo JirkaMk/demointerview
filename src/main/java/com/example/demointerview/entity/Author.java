@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "book")
-public class Book {
+@Table(name = "author")
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +21,9 @@ public class Book {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "book_year")
-    private Integer year;
+    @Column(name = "surname", nullable = false)
+    private String surname;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 }
