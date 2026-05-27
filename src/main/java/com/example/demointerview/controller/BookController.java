@@ -7,7 +7,6 @@ import com.example.demointerview.domain.BookDomain;
 import com.example.demointerview.mapper.BookMapper;
 import com.example.demointerview.service.BookService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,19 +20,18 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookResponse> createBook(@RequestBody CreateBookRequest createBookRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookResponse createBook(@RequestBody CreateBookRequest createBookRequest) {
         BookDomain bookDomain = BookMapper.INSTANCE.bookToBookDomain(createBookRequest);
         BookDomain savedBook = bookService.createBook(bookDomain);
-        BookResponse bookResponse = BookMapper.INSTANCE.bookDomainToBookResponse(savedBook);
 
-        return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
+        return BookMapper.INSTANCE.bookDomainToBookResponse(savedBook);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookDetailResponse> getBook(@PathVariable Long id) {
+    public BookDetailResponse getBook(@PathVariable Long id) {
         BookDomain book = bookService.getBook(id);
-        BookDetailResponse bookResponse = BookMapper.INSTANCE.bookDomainToBookDetailResponse(book);
 
-        return new ResponseEntity<>(bookResponse, HttpStatus.OK);
+        return BookMapper.INSTANCE.bookDomainToBookDetailResponse(book);
     }
 }
